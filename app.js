@@ -6,7 +6,13 @@ function addTodo() {
 
   const li = document.createElement('li');
   li.textContent = input.value;
-  list.appendChild(li);
 
+  // クリックで完了（取り消し線）
+  li.onclick = function() {
+    li.style.textDecoration =
+      li.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+  };
+
+  list.appendChild(li);
   input.value = '';
 }
