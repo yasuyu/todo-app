@@ -5,14 +5,27 @@ function addTodo() {
   if (input.value === '') return;
 
   const li = document.createElement('li');
-  li.textContent = input.value;
+
+  // テキスト部分
+  const span = document.createElement('span');
+  span.textContent = input.value;
 
   // クリックで完了（取り消し線）
-  li.onclick = function() {
-    li.style.textDecoration =
-      li.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+  span.onclick = function() {
+    span.style.textDecoration =
+      span.style.textDecoration === 'line-through' ? 'none' : 'line-through';
   };
 
+  // 削除ボタン
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = '削除';
+  deleteBtn.onclick = function() {
+    list.removeChild(li);
+  };
+
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
   list.appendChild(li);
+
   input.value = '';
 }
